@@ -7,11 +7,14 @@ const cors = require("cors"); // Add CORS package
 const app = express();
 const port = 3000;
 
-app.use(cors()); 
-
+app.use(cors());
 
 // Function to scrape top 4 favorite movies from Letterboxd
 async function getFavoriteMovies(username) {
+
+  console.log(`Scraping Letterboxd for ${username}`);
+  
+  
   const url = `https://letterboxd.com/${username}/`;
   try {
     const response = await axios.get(url, {
@@ -50,7 +53,7 @@ async function generateRoast(username, movies) {
       apiUrl,
       {
         prompt: promptText,
-        max_tokens: 2048, 
+        max_tokens: 2048,
       },
       {
         headers: {
